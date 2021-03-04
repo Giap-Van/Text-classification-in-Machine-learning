@@ -20,12 +20,11 @@ encoder = preprocessing.LabelEncoder()
 y_data_n = encoder.fit_transform(y_data)
 y_test_n = encoder.fit_transform(y_test)
 
-lb = preprocessing.LabelBinarizer()
-y_data_n = lb.fit_transform(y_data)
-y_test_n = lb.fit_transform(y_test)
+# lb = preprocessing.LabelBinarizer()
+# y_data_n = lb.fit_transform(y_data)
+# y_test_n = lb.fit_transform(y_test)
 
 encoder.classes_
-print(y_data_n)
 
 # basic IF-IDF
 tfidf_vect = TfidfVectorizer(analyzer='word', max_features=30000)
@@ -117,17 +116,17 @@ train_model(naive_bayes.MultinomialNB(), X_data_tfidf, y_data_n, X_test_tfidf, y
 # Validation accuracy:  0.7211404728789986
 # Test accuracy:  0.7024677045379265
 
-print("Naive Bayes với tfidf_N-gram_level SVD")
-train_model(naive_bayes.MultinomialNB(), X_data_tfidf_ngram_svd, y_data_n, X_test_tfidf_ngram_svd, y_test_n, is_neuralnet=False)
-# ########### kết quả Naive Bayes với tfidf_N-gram_level SVD
-# Validation accuracy:  0.13630041724617525
-# Test accuracy:  0.121232196091421
+print("BernoulliNB với tfidf")
+train_model(naive_bayes.BernoulliNB(), X_data_tfidf, y_data_n, X_test_tfidf, y_test_n, is_neuralnet=False)
+########### kết quả BernoulliNB với tfidf
+# Validation accuracy:  0.760778859527121
+# Test accuracy:  0.7232527326929447
 
-print("Naive Bayes với tfidf_Character_level SVD")
-train_model(naive_bayes.MultinomialNB(), X_data_tfidf_ngram_char_svd, y_data_n, X_test_tfidf_ngram_char_svd, y_test_n, is_neuralnet=False)
-########### kết quả Naive Bayes với tfidf_Character_level SVD
-# Validation accuracy:  0.13630041724617525
-# Test accuracy:  0.121232196091421
+print("BernoulliNB với tfidf SVD")
+train_model(naive_bayes.BernoulliNB(), X_data_tfidf_svd, y_data_n, X_test_tfidf_svd, y_test_n, is_neuralnet=False)
+########### kết quả BernoulliNB với tfidf SVD
+# Validation accuracy:  0.8393602225312935
+# Test accuracy:  0.828668433256045
 
 
 # Linear Classifier
@@ -139,20 +138,20 @@ train_model(linear_model.LogisticRegression(), X_data_tfidf, y_data_n, X_test_tf
 
 print("Linear Classifier với tfidf_N-gram_level SVD")
 train_model(linear_model.LogisticRegression(), X_data_tfidf_ngram_svd, y_data_n, X_test_tfidf_ngram_svd, y_test_n, is_neuralnet=False)
-# ########### kết quả Linear Classifier với tfidf_N-gram_level SVD:
+# kết quả Linear Classifier với tfidf_N-gram_level SVD:
 # Validation accuracy:  0.8497913769123783
 # Test accuracy:  0.7960417356740642
 
 print("Linear Classifier với tfidf_Character_level SVD")
 train_model(linear_model.LogisticRegression(), X_data_tfidf_ngram_char_svd, y_data_n, X_test_tfidf_ngram_char_svd, y_test_n, is_neuralnet=False)
-# ########### kết quả Linear Classifier với tfidf_Character_level SVD
+# kết quả Linear Classifier với tfidf_Character_level SVD
 # Validation accuracy:  0.885952712100139
 # Test accuracy:  0.8608810864524677
 
 # Support Vector Machine (SVM)
 print("SVM với tfidf")
 train_model(svm.SVC(), X_data_tfidf, y_data_n, X_test_tfidf, y_test_n, is_neuralnet=False)
-########### kết quả SVM với tfidf:
+# ################## kết quả SVM với tfidf:
 # Validation accuracy:  0.13630041724617525
 # Test accuracy:  0.121232196091421
 
@@ -171,6 +170,6 @@ train_model(svm.SVC(),  X_data_tfidf_ngram_char_svd, y_data_n, X_test_tfidf_ngra
 # Random Forest Classifier
 print("Random Forest Classifier với tfidf svd")
 train_model(ensemble.RandomForestClassifier(), X_data_tfidf, y_data_n, X_test_tfidf, y_test_n, is_neuralnet=False)
-########### kết quả Random Forest Classifier với tfidf svd
+# kết quả Random Forest Classifier với tfidf svd
 # Validation accuracy:  0.7635605006954103
 # Test accuracy:  0.7186154355746937
