@@ -20,10 +20,6 @@ encoder = preprocessing.LabelEncoder()
 y_data_n = encoder.fit_transform(y_data)
 y_test_n = encoder.fit_transform(y_test)
 
-# lb = preprocessing.LabelBinarizer()
-# y_data_n = lb.fit_transform(y_data)
-# y_test_n = lb.fit_transform(y_test)
-
 encoder.classes_
 
 # basic IF-IDF
@@ -149,23 +145,23 @@ train_model(linear_model.LogisticRegression(), X_data_tfidf_ngram_char_svd, y_da
 # Test accuracy:  0.8608810864524677
 
 # Support Vector Machine (SVM)
-print("SVM với tfidf")
-train_model(svm.SVC(), X_data_tfidf, y_data_n, X_test_tfidf, y_test_n, is_neuralnet=False)
-# ################## kết quả SVM với tfidf:
-# Validation accuracy:  0.13630041724617525
-# Test accuracy:  0.121232196091421
+print("Linear SVM với tfidf")
+train_model(svm.LinearSVC(), X_data_tfidf, y_data_n, X_test_tfidf, y_test_n, is_neuralnet=False)
+# ########### kết quả Linear SVM với tfidf
+# Validation accuracy:  0.9228094575799722
+# Test accuracy:  0.9112288837363365
 
 print("SVM với tfidf_N-gram_level SVD")
-train_model(svm.SVC(),  X_data_tfidf_ngram_svd, y_data_n, X_test_tfidf_ngram_svd, y_test_n, is_neuralnet=False)
-# ########### kết quả SVM với tfidf_N-gram_level SVD
-# Validation accuracy:  0.13630041724617525
-# Test accuracy:  0.121232196091421
+train_model(svm.LinearSVC(),  X_data_tfidf_ngram_svd, y_data_n, X_test_tfidf_ngram_svd, y_test_n, is_neuralnet=False)
+# kết quả SVM với tfidf_N-gram_level SVD
+# Validation accuracy:  0.8908205841446454
+# Test accuracy:  0.8451473998012587
 
 print("SVM với tfidf_Character_level SVD")
-train_model(svm.SVC(),  X_data_tfidf_ngram_char_svd, y_data_n, X_test_tfidf_ngram_char_svd, y_test_n, is_neuralnet=False)
-########### kết quả SVM với tfidf_Character_level SVD
-# Validation accuracy:  0.13630041724617525
-# Test accuracy:  0.12172904935409076
+train_model(svm.LinearSVC(),  X_data_tfidf_ngram_char_svd, y_data_n, X_test_tfidf_ngram_char_svd, y_test_n, is_neuralnet=False)
+# kết quả SVM với tfidf_Character_level SVD
+# Validation accuracy:  0.9186369958275382
+# Test accuracy:  0.8885392514077509
 
 # Random Forest Classifier
 print("Random Forest Classifier với tfidf svd")
